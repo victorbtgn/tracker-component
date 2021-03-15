@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 20px 30px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 20px;
+}
+.input {
+  width: calc(100% - 37px);
+  padding-left: 15px;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+.button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background-color: green;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  width: 25px;
+  fill: white;
+  transition: .2s linear;  
+}
+.button:hover .icon {
+  transform: rotate(120deg);
+  width: 30px;
+  transition: .2s linear;
+}
+
+@media screen and (min-width: 560px) {
+  .form {
+    margin: 0 0 30px;
+  }
+}
