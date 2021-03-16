@@ -12,7 +12,7 @@ export default function TrackList() {
 
     return(
         <ul className={styles.list}>
-            {trackList.map(({ id, name, startTime, pause }) => <TrackItem key={id} name={name} startTime={startTime} pause={pause} onDelete={() => onRemoveTracker(id)} />)}
+            {trackList.map(({ id, name, startTime, pause }) => <TrackItem key={id} id={id} name={name} startTime={startTime} pause={pause} onDelete={() => onRemoveTracker(id)} />)}
         </ul>
     )
 }

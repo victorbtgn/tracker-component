@@ -8,6 +8,10 @@ const removeTrackerRequest = createAction('tracker/removeTrackerRequest');
 const removeTrackerSuccess = createAction('tracker/removeTrackerSuccess');
 const removeTrackerError = createAction('tracker/removeTrackerError');
 
+const pauseTrackerRequest = createAction('tracker/pauseTrackerRequest');
+const pauseTrackerSuccess = createAction('tracker/pauseTrackerSuccess');
+const pauseTrackerError = createAction('tracker/pauseTrackerError');
+
 export default {
     addTrackerRequest,
     addTrackerSuccess,
@@ -15,4 +19,7 @@ export default {
     removeTrackerRequest,
     removeTrackerSuccess,
     removeTrackerError,
+    pauseTrackerRequest,
+    pauseTrackerSuccess,
+    pauseTrackerError,
 }

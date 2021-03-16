@@ -1,7 +1,7 @@
 import trackerActions from './tracker-actions';
 
 const addTracker = (name, id) => async dispatch => {
-    dispatch(trackerActions.addTrackerRequest);
+    dispatch(trackerActions.addTrackerRequest());
 
     const tracker = {
         id,
@@ -18,7 +18,7 @@ const addTracker = (name, id) => async dispatch => {
 };
 
 const removeTracker = id => async dispatch => {
-    dispatch(trackerActions.removeTrackerRequest);
+    dispatch(trackerActions.removeTrackerRequest());
 
     try {
         dispatch(trackerActions.removeTrackerSuccess(id))
@@ -27,4 +27,17 @@ const removeTracker = id => async dispatch => {
     }
 }
 
-export default { addTracker, removeTracker };
+const pauseTracker = (id, trackerList, deltaTime) => async dispatch => {
+    dispatch(trackerActions.pauseTrackerRequest())
+
+    try {
+        const newTrackerList = trackerList.map(tracker => {
+            if(id === tracker.id) return { ...tracker, pause: true, deltaTime };
+        })
+        dispatch(trackerActions.pauseTrackerSuccess(newTrackerList));
+    } catch (error) {
+        dispatch(trackerActions.pauseTrackerError(error.message))
+    }
+};
+
+export default { addTracker, removeTracker, pauseTracker };
