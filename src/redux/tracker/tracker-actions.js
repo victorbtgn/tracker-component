@@ -12,6 +12,10 @@ const pauseTrackerRequest = createAction('tracker/pauseTrackerRequest');
 const pauseTrackerSuccess = createAction('tracker/pauseTrackerSuccess');
 const pauseTrackerError = createAction('tracker/pauseTrackerError');
 
+const playTrackerRequest = createAction('tracker/playTrackerRequest');
+const playTrackerSuccess = createAction('tracker/playTrackerSuccess');
+const playTrackerError = createAction('tracker/playTrackerError');
+
 export default {
     addTrackerRequest,
     addTrackerSuccess,
@@ -22,4 +26,7 @@ export default {
     pauseTrackerRequest,
     pauseTrackerSuccess,
     pauseTrackerError,
+    playTrackerRequest,
+    playTrackerSuccess,
+    playTrackerError,
 }

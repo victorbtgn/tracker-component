@@ -7,6 +7,7 @@ const trackerList = createReducer([], {
     [trackerActions.removeTrackerSuccess]: (state, { payload }) => 
         state.filter(({ id }) => id !== payload),
     [trackerActions.pauseTrackerSuccess]: (_, { payload }) => payload,
+    [trackerActions.playTrackerSuccess]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
@@ -16,12 +17,19 @@ const loading = createReducer(false, {
     [trackerActions.removeTrackerRequest]: () => true,
     [trackerActions.removeTrackerSuccess]: () => false,
     [trackerActions.removeTrackerError]: () => false,
+    [trackerActions.pauseTrackerRequest]: () => true,
+    [trackerActions.pauseTrackerSuccess]: () => false,
+    [trackerActions.pauseTrackerError]: () => false,
+    [trackerActions.playTrackerRequest]: () => true,
+    [trackerActions.playTrackerSuccess]: () => false,
+    [trackerActions.playTrackerError]: () => false,
 })
 
 const error = createReducer(null, {
     [trackerActions.addTrackerError]: (_, { payload }) => payload,
     [trackerActions.removeTrackerError]: (_, { payload }) => payload,
     [trackerActions.pauseTrackerError]: (_, { payload }) => payload,
+    [trackerActions.playTrackerError]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

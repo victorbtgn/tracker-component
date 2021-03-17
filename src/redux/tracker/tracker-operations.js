@@ -33,6 +33,7 @@ const pauseTracker = (id, trackerList, deltaTime) => async dispatch => {
     try {
         const newTrackerList = trackerList.map(tracker => {
             if(id === tracker.id) return { ...tracker, pause: true, deltaTime };
+            return tracker;
         })
         dispatch(trackerActions.pauseTrackerSuccess(newTrackerList));
     } catch (error) {
@@ -40,4 +41,18 @@ const pauseTracker = (id, trackerList, deltaTime) => async dispatch => {
     }
 };
 
-export default { addTracker, removeTracker, pauseTracker };
+const playTracker = (id, trackerList, playTime) => async dispatch =>  {
+    dispatch(trackerActions.playTrackerRequest());
+
+    try {
+        const newTrackerList = trackerList.map(tracker => {
+            if(id === tracker.id) return { ...tracker, pause: false, playTime };
+            return tracker;
+        })
+        dispatch(trackerActions.playTrackerSuccess(newTrackerList));
+    } catch (error) {
+        dispatch(trackerActions.playTrackerError(error.message));
+    }
+};
+
+export default { addTracker, removeTracker, pauseTracker, playTracker };
