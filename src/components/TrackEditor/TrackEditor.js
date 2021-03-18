@@ -22,7 +22,7 @@ export default function TrackEditor() {
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        const trackerId = trackerList.length ? trackerList[trackerList.length - 1].id + 1 : 1;
+        const trackerId = trackerList.length ? trackerList[0].id + 1 : 1;
         dispatch(trackerOperations.addTracker(name, trackerId));
         setName('');
     };

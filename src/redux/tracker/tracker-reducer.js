@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import trackerActions from './tracker-actions';
 
 const trackerList = createReducer([], {
-    [trackerActions.addTrackerSuccess]: (state, { payload }) => [...state, payload],
+    [trackerActions.addTrackerSuccess]: (state, { payload }) => [payload, ...state],
     [trackerActions.removeTrackerSuccess]: (state, { payload }) => 
         state.filter(({ id }) => id !== payload),
     [trackerActions.pauseTrackerSuccess]: (_, { payload }) => payload,
