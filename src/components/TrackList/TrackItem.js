@@ -14,7 +14,8 @@ import moment from 'moment';
 export default function TrackItem({ idProps, nameProps, startTimeProps, pauseProps, deltaTimeProps, playTimeProps,  onDeleteProps }) {
     const dispatch = useDispatch();
     const trackList = useSelector(trackerSelectors.getTrackerList);
-    const [timeCounter, setTimeCounter] = useState('00:00:00');
+    const [timeCounter, setTimeCounter] = useState('00:00');
+    const [hours, setHours] = useState(0);
     const [deltaTime, setDeltaTime] = useState(0);
     const [intervalId, setIntervalId] = useState(null);
 
@@ -35,10 +36,12 @@ export default function TrackItem({ idProps, nameProps, startTimeProps, pausePro
 
     useEffect(() => {
         if(deltaTimeProps && pauseProps) {
-            setTimeCounter(moment(deltaTimeProps).utc().format('HH:mm:ss'));
+            setHours(Math.floor(deltaTimeProps / 3600000));
+            setTimeCounter(moment(deltaTimeProps).utc().format('mm:ss'));
         }
         if(deltaTimeProps && !pauseProps) {
-            setTimeCounter(moment(Date.now() + deltaTimeProps - playTimeProps).utc().format('HH:mm:ss'));
+            setHours(Math.floor((Date.now() + deltaTimeProps - playTimeProps) / 3600000));
+            setTimeCounter(moment(Date.now() + deltaTimeProps - playTimeProps).utc().format('mm:ss'));
         }
     }, [deltaTimeProps, playTimeProps])
 
@@ -46,11 +49,13 @@ export default function TrackItem({ idProps, nameProps, startTimeProps, pausePro
         const timerId = setInterval(() => {
             if(delta) {
                 let interval = Date.now() + delta - play;
-                setTimeCounter(moment(interval).utc().format('HH:mm:ss'));
+                setHours(Math.floor(interval / 3600000));
+                setTimeCounter(moment(interval).utc().format('mm:ss'));
                 setDeltaTime(interval);
             } else {
                 let interval = Date.now() - start;
-                setTimeCounter(moment(interval).utc().format('HH:mm:ss'));
+                setHours(Math.floor(interval / 3600000));
+                setTimeCounter(moment(interval).utc().format('mm:ss'));
                 setDeltaTime(interval);
             }
         }, 1000);
@@ -68,7 +73,7 @@ export default function TrackItem({ idProps, nameProps, startTimeProps, pausePro
     return(
         <li className={pauseProps ? styles.listItem : styles.listItemActive}>
             <span className={styles.name}>{nameProps}</span>
-            <span className={styles.time}>{timeCounter}</span>
+            <span className={styles.time}>{hours < 10 ? '0' + hours : hours}:{timeCounter}</span>
 
             <button type='button' className={styles.button}>
                 {pauseProps 
