@@ -4,7 +4,7 @@
   align-items: center;
   margin: 0 20px 30px;
   height: 40px;
-  border: 1px solid #333;
+  border: 1px solid var(--placeholders-font);
   border-radius: 20px;
 }
 .input {
@@ -14,12 +14,15 @@
   background: transparent;
   outline: none;
 }
+.input::placeholder {
+  color: var(--placeholders-font);
+}
 .button {
   width: 34px;
   height: 34px;
   border: none;
   border-radius: 50%;
-  background-color: green;
+  background-color: var(--active-font-color);
   cursor: pointer;
   outline: none;
   display: flex;
@@ -28,13 +31,13 @@
 }
 .icon {
   width: 25px;
-  fill: white;
-  transition: .2s linear;  
+  fill: var(--primary-white);
+  transition: 0.2s linear;
 }
 .button:hover .icon {
   transform: rotate(120deg);
   width: 30px;
-  transition: .2s linear;
+  transition: 0.2s linear;
 }
 
 @media screen and (min-width: 560px) {

@@ -66,7 +66,7 @@ export default function TrackItem({ idProps, nameProps, startTimeProps, pausePro
     };
 
     return(
-        <li className={styles.listItem}>
+        <li className={pauseProps ? styles.listItem : styles.listItemActive}>
             <span className={styles.name}>{nameProps}</span>
             <span className={styles.time}>{timeCounter}</span>
 
